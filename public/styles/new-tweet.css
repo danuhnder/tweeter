@@ -7,36 +7,26 @@
   
 }
 
-/* .new-tweet header{
 
-} */
 
-#textwrapper {
-  position: relative;
-}
 
 
 .new-tweet textarea {
   background-color: transparent;
   border: 0px;
   border-bottom: 2px solid black;
-  position: absolute;
+  margin-top: 0.5em;
   width: 100%;
-  padding: 0 0 0;
+  padding: 10 0 6;
   
 }
 
-.new-tweet textarea input:valid {
-  background-color: #f4f1ec;
-}
 
-.new-tweet label {
-  position: absolute;
-}
 
-#buttonwrapper {
+
+.new-tweet div {
   
-  margin-top: 3em;
+  margin-top: 0.5em;
   font-family: 'Bungee', cursive;
   display: flex;
   flex-direction: row;
