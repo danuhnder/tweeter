@@ -1,8 +1,8 @@
 .show-tweets {
   width: 100%;
   padding: 1.5em;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .show-tweets article {
@@ -13,10 +13,11 @@
 .show-tweets article:hover {
   border-color: black;
   color: black;
-  box-shadow: 3px 3px 1px #545149;
+  font-weight: 700;
+  box-shadow: 6px 6px 2px #545149;
 }
 
-.show-tweets article header {
+.show-tweets header {
   flex-grow: 1;
   display: flex;
   flex-direction: row;
@@ -25,7 +26,7 @@
   padding: 0.5em;
 }
 
-.show-tweets article header div {
+.show-tweets header div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -37,12 +38,12 @@
 }
 
 
-.show-tweets article p {
+.show-tweets p {
   flex-grow: 2;
   padding: 0.5em;
 }
 
-.show-tweets article footer {
+.show-tweets footer {
   flex-grow: 1;
   border: none;
   border-top: 4px solid #545149;

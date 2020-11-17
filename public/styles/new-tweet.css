@@ -35,7 +35,9 @@
 }
 
 
-
+.new-tweet .red {
+  color: red;
+}
 
 .new-tweet button {
   color: #ffffff;
