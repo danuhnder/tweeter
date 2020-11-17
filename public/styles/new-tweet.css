@@ -14,8 +14,8 @@
 .new-tweet textarea {
   background-color: transparent;
   border: 0px;
-  border-bottom: 2px solid black;
-  margin-top: 0.5em;
+  border-bottom: 4px solid #545149;
+  /* margin-top: 0.5em; */
   width: 100%;
   padding: 10 0 6;
   
