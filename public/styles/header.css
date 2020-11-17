@@ -1,4 +1,4 @@
-header {
+header.page-header {
   height: 400px;
   width: 100%;
   display: flex;
@@ -7,5 +7,9 @@ header {
   justify-content: flex-start;
   background-color: #d48b1e;
   background-image: url("https://www.transparenttextures.com/patterns/foggy-birds.png");
+  
+}
 
+header.page-header div h2 {
+  margin: 0.2em;
 }
