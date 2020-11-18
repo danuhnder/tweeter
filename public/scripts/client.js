@@ -61,18 +61,24 @@ $(document).ready(function(){
     }
   };
 
-  // renderTweets(tweets);
+  const escape =  function(str) {
+    let div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
 
-  $("#tweet").on("click", function (event) {
+  $("#tweet-form").on("submit", function (event) {
     event.preventDefault();
-    if ($("#tweet-text").val() === null || $("#tweet-text").val() === '') {
-      alert("USE YOUR WORDS SWEETIE");
-    } else if ($("#tweet-text").val().length > 140) {
-      alert("YOU TALK TOO MUCH");
+    const rawHTML = $("#tweet-text").val();
+    if (rawHTML === null || rawHTML === '' || rawHTML.length > 140) {
+      $("#error-msg").show(200);
+      setTimeout( () => $("#error-msg").hide(200), 3600);
     } else {
+      $("#error-msg").hide(200)
+      const safeHTML = escape(rawHTML);
       $.ajax("/tweets/", {
         method: "POST",
-        data: $("#tweet-text").serialize()
+        data: {text: safeHTML}
       })
       .then(
         () => loadTweets(renderTweets),
