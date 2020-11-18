@@ -65,16 +65,20 @@ $(document).ready(function(){
 
   $("#tweet").on("click", function (event) {
     event.preventDefault();
-    
-    $.ajax("/tweets/", {
-      method: "POST",
-      data: $("#tweet-text").serialize()
-    })
-    .then(
-      () => loadTweets(renderTweets),
-      $("#tweet-text").val("")
-    );
-    
+    if ($("#tweet-text").val() === null || $("#tweet-text").val() === '') {
+      alert("USE YOUR WORDS SWEETIE");
+    } else if ($("#tweet-text").val().length > 140) {
+      alert("YOU TALK TOO MUCH");
+    } else {
+      $.ajax("/tweets/", {
+        method: "POST",
+        data: $("#tweet-text").serialize()
+      })
+      .then(
+        () => loadTweets(renderTweets),
+        $("#tweet-text").val("")
+      );
+    };
   });
 
   const loadTweets = (done) => {
