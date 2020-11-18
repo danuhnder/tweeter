@@ -9,30 +9,30 @@
 
 $(document).ready(function(){
 
-  const tweets = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants, not that shortass Robert Hooke"
-    },
-    "created_at": 1461116232227
-    },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis, je pense?"
-    },
-    "created_at": 1461113959088
-    }
-  ];
+  // const tweets = [
+  // {
+  //   "user": {
+  //     "name": "Newton",
+  //     "avatars": "https://i.imgur.com/73hZDYK.png"
+  //     ,
+  //     "handle": "@SirIsaac"
+  //   },
+  //   "content": {
+  //     "text": "If I have seen further it is by standing on the shoulders of giants, not that shortass Robert Hooke"
+  //   },
+  //   "created_at": 1461116232227
+  //   },
+  // {
+  //   "user": {
+  //     "name": "Descartes",
+  //     "avatars": "https://i.imgur.com/nlhLi3I.png",
+  //     "handle": "@rd" },
+  //   "content": {
+  //     "text": "Je pense , donc je suis, je pense?"
+  //   },
+  //   "created_at": 1461113959088
+  //   }
+  // ];
  
   const createTweetElement = function(tweet) {
     const $tweet = $(`
@@ -61,18 +61,30 @@ $(document).ready(function(){
     }
   };
 
-  renderTweets(tweets);
+  // renderTweets(tweets);
 
   $("#tweet").on("click", function (event) {
     event.preventDefault();
+    
     $.ajax("/tweets/", {
       method: "POST",
       data: $("#tweet-text").serialize()
     })
-    .then(console.log("it worked?"));
+    .then(
+      () => loadTweets(renderTweets),
+      $("#tweet-text").val("")
+    );
     
   });
 
+  const loadTweets = (done) => {
+    $.ajax("/tweets/", {
+      method: "GET"
+    })
+    .then(res => done(res));
+  }
+
+    loadTweets(renderTweets)
 });
 
 
