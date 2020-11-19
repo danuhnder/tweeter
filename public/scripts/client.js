@@ -11,6 +11,25 @@ $(document).ready(function(){
     $(".new-tweet").slideToggle(400);
     $("#tweet-text").focus();
   });
+  
+  // return button functionality
+  // handles navbar hide
+  $(window).scroll(function () {
+    const scroll = $(window).scrollTop();
+    if (scroll > 500) {
+      $(".return").removeClass("invisible");
+      $("nav").slideUp(200);
+      $(".new-tweet").slideUp(200);
+    } else {
+      $(".return").addClass("invisible")
+      $("nav").slideDown(200);
+    }
+  });
+  // return button functionality
+  $(".return").click( () => {
+    $("nav").slideDown(0);
+    window.scrollTo(0, 0);
+  });
 
   // generates readable date from timestamp
   const dateFunction = (date) => {
@@ -31,19 +50,19 @@ $(document).ready(function(){
   const createTweetElement = function(tweet) {
     const $tweet = $(`
     <article class="tweet">
-      <header class="tweet-header">
-        <div>
-          <img src=${tweet.user.avatars} >
-          <span>${tweet.user.name}</span>
-        </div>
-        <span>${tweet.user.handle}</span>
-      </header>
-      <p>${tweet.content.text}</p>
-      <footer>
-        <span>${dateFunction(tweet.created_at)}</span>
-        <span>icons</span>
-      </footer>
-    </article> 
+    <header class="tweet-header">
+      <div>
+        <img src=${tweet.user.avatars} >
+        <span>${tweet.user.name}</span>
+      </div>
+      <span>${tweet.user.handle}</span>
+    </header>
+    <p>${tweet.content.text}</p>
+    <footer>
+      <span>${dateFunction(tweet.created_at)}</span>
+      <span><img src="images/reply-message.png"> | <img src="images/share.png"> | <img src="images/heart.png"></span>
+    </footer>
+  </article> 
     `);
     return $tweet;   
   };
@@ -55,10 +74,11 @@ $(document).ready(function(){
       $(".show-tweets").append($tweet);
     }
   };
-  // tweet composer character counter
+
+  // tweet composer character counter logic
   $("#tweet-text").on('input', function() {
     const tweetLength = $(this).val().length;
-    const counter = $(this).siblings().children("output");
+    const counter = $(".counter");
     counter.val(140 - tweetLength);
     if (counter.val() < 0) {
       counter.addClass('red');
@@ -96,6 +116,7 @@ $(document).ready(function(){
         $(".show-tweets").empty();
         loadTweets(renderTweets);
         $("#tweet-text").val("");
+        $(".counter").val(140);
       });
     };
   });
