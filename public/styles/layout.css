@@ -23,6 +23,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding-top: 120px;
+  width: 100%;
 }
 
 /*
@@ -30,4 +31,31 @@ body {
  */
 .container {
   width: 90%
+}
+
+/*
+ * Shrinking + growing rules
+*/
+@media only screen and (min-width: 1024px) {
+  
+  body {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  
+  .container {
+    width: 65%;
+  }
+  
+}
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 18px;
+  }
+
+  .container {
+    width: 100%;
+  }
+
 }

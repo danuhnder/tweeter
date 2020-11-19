@@ -27,3 +27,12 @@ nav p {
 nav span {
   font-family: 'Bungee', cursive;
  }
+
+.chevron {
+  height: 25px;
+}
+
+.chevron:hover {
+  height: 35px;
+  fill: red;
+}
