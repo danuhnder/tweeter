@@ -41,7 +41,10 @@
     <!-- Top nav bar (fixed) -->
     <nav>
       <span>tweeeter</span>
-      <p><strong>Write</strong> a new tweet</p>
+      <div class="write-focus">
+        <p><strong>Write</strong> a new tweet</p>
+        <img src="./images/download.png">
+      </div>
     </nav>
     <header class="page-header">
       <div>
@@ -57,7 +60,7 @@
     <main class="container">
       <section class="new-tweet">
 
-        <p id="error-msg">### Your tweet must be <strong>at least 1</strong> character and <strong>at most 140</strong> characters! ###</p>
+        <p id="error-msg"><img src="./images/close.png" alt="error icon">  Your tweet must be <strong>at least 1</strong> character and <strong>at most 140</strong> characters!  <img src="./images/close.png" alt="error icon"></p>
         <form id="tweet-form" action="/tweets/" method="POST">
           <label for="tweet-text">What are you humming about?</label>
           <textarea name="text" id="tweet-text"></textarea>
@@ -72,5 +75,7 @@
       </section>
 
     </main>
+    <div>Icons made by <a href="https://www.alfredocreates.com/" title="Alfredo Hernandez">Alfredo Hernandez</a> & <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    
   </body>
 </html>

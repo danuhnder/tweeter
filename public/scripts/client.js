@@ -1,6 +1,4 @@
-// const { JSDOM } = require( "jsdom" );
-// const {window} = new JSDOM ("");
-// const $ = require("jquery")(window);
+
 /*
  * Client-side JS logic goes here
  * jQuery is already loaded
@@ -8,32 +6,16 @@
  */
 
 $(document).ready(function(){
-
-  // const tweets = [
-  // {
-  //   "user": {
-  //     "name": "Newton",
-  //     "avatars": "https://i.imgur.com/73hZDYK.png"
-  //     ,
-  //     "handle": "@SirIsaac"
-  //   },
-  //   "content": {
-  //     "text": "If I have seen further it is by standing on the shoulders of giants, not that shortass Robert Hooke"
-  //   },
-  //   "created_at": 1461116232227
-  //   },
-  // {
-  //   "user": {
-  //     "name": "Descartes",
-  //     "avatars": "https://i.imgur.com/nlhLi3I.png",
-  //     "handle": "@rd" },
-  //   "content": {
-  //     "text": "Je pense , donc je suis, je pense?"
-  //   },
-  //   "created_at": 1461113959088
-  //   }
-  // ];
  
+  $(".write-focus").on("click", function () {
+    if ($(".new-tweet").first().is(":hidden")) {
+      $(".new-tweet").slideDown(400);
+      $("#tweet-text").focus()
+    } else {
+      $(".new-tweet").slideUp(400);
+    }
+  });
+
   const createTweetElement = function(tweet) {
     const $tweet = $(`
     <article class="tweet">

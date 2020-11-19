@@ -1,4 +1,4 @@
-header.page-header {
+.page-header {
   height: 400px;
   width: 100%;
   display: flex;
@@ -10,6 +10,7 @@ header.page-header {
   
 }
 
-header.page-header div h2 {
+
+.page-header h2 {
   margin: 0.2em;
 }

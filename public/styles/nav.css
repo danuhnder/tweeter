@@ -13,6 +13,17 @@ nav {
 
  }
 
+nav div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+nav p {
+  margin-bottom: 10px;
+}
+
 nav span {
   font-family: 'Bungee', cursive;
  }
