@@ -23,8 +23,8 @@ Tweeeter is a simple, single-page Twitter clone. Front end is constructed from H
 
 ## Screenshots
 
-!["Top of the page (in tablet view)"] (https://github.com/danuhnder/tweeter/blob/master/docs/tweet-landing.png)
-!["Engage in some scintillating conversation..."] (https://github.com/danuhnder/tweeter/blob/master/docs/tweet-list.png)
-!["... and add your own two cents!"] (https://github.com/danuhnder/tweeter/blob/master/docs/tweet-input.png)
-!["Only 140 characters worth of two cents though!"] (https://github.com/danuhnder/tweeter/blob/master/docs/tweet-validation.png)
-!["Enjoy on all of your devices!"] (https://github.com/danuhnder/tweeter/blob/master/docs/tweet-desktop.png)
+!["Top of the page (in tablet view)"](https://github.com/danuhnder/tweeter/blob/master/docs/tweet-landing.png)
+!["Engage in some scintillating conversation..."](https://github.com/danuhnder/tweeter/blob/master/docs/tweet-list.png)
+!["... and add your own two cents!"](https://github.com/danuhnder/tweeter/blob/master/docs/tweet-input.png)
+!["Only 140 characters worth of two cents though!"](https://github.com/danuhnder/tweeter/blob/master/docs/tweet-validation.png)
+!["Enjoy on all of your devices!"](https://github.com/danuhnder/tweeter/blob/master/docs/tweet-desktop.png)
