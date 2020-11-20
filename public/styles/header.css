@@ -7,12 +7,8 @@
   justify-content: flex-start;
   background-color: #d48b1e;
   background-image: url("https://www.transparenttextures.com/patterns/foggy-birds.png");
-  
 }
 
-.page-header svg {
-  fill: red;
-}
 .page-header h2 {
   margin: 0.2em;
 }

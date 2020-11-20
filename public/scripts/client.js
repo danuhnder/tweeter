@@ -4,44 +4,44 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-$(document).ready(function(){
+$(document).ready(function() {
  
   // Handles dropdown of New Tweet form
-  $(".write-focus").on("click", function () {
+  $(".write-focus").on("click", function() {
     $(".new-tweet").slideToggle(400);
     $("#tweet-text").focus();
   });
   
   // return button functionality
   // handles navbar hide
-  $(window).scroll(function () {
+  $(window).scroll(function() {
     const scroll = $(window).scrollTop();
     if (scroll > 500) {
-      $(".return").removeClass("invisible");
+      $(".home").removeClass("invisible");
       $("nav").slideUp(200);
       $(".new-tweet").slideUp(200);
     } else {
-      $(".return").addClass("invisible")
+      $(".home").addClass("invisible");
       $("nav").slideDown(200);
     }
   });
   // return button functionality
-  $(".return").click( () => {
+  $(".home").click(() => {
     $("nav").slideDown(0);
     window.scrollTo(0, 0);
   });
 
   // generates readable date from timestamp
   const dateFunction = (date) => {
-    const newDate = new Date(date)
+    const newDate = new Date(date);
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const weekday = days[newDate.getDay()];
     const day = newDate.getDate();
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const month = months[newDate.getMonth()];
     const year = newDate.getFullYear();
     const hour = newDate.getHours();
-    const minute = (newDate.getMinutes()<10 ? '0' : '' ) + newDate.getMinutes();
+    const minute = (newDate.getMinutes() < 10 ? '0' : '') + newDate.getMinutes();
     const readableDate = `${hour}:${minute} | ${weekday} ${day}-${month}-${year}`;
     return readableDate;
   };
@@ -64,7 +64,7 @@ $(document).ready(function(){
     </footer>
   </article> 
     `);
-    return $tweet;   
+    return $tweet;
   };
   
   // takes array of tweet objects, appends HTML version to tweet container
@@ -84,8 +84,8 @@ $(document).ready(function(){
       counter.addClass('red');
     } else {
       counter.removeClass('red');
-    };
-    });
+    }
+  });
   
 
   // protects from cross-site-scripting and enemy hackermans
@@ -93,32 +93,32 @@ $(document).ready(function(){
     let div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
-  }
+  };
 
   // submission and error-handling logic
-  $("#tweet-form").on("submit", function (event) {
+  $("#tweet-form").on("submit", function(event) {
     event.preventDefault();
     const rawHTML = $("#tweet-text").val();
     // string length checker
     if (rawHTML === null || rawHTML === '' || rawHTML.length > 140) {
       $("#error-msg").show(200);
-      setTimeout( () => $("#error-msg").hide(200), 3600);
+      setTimeout(() => $("#error-msg").hide(200), 3600);
     } else {
-      $("#error-msg").hide(200)
+      $("#error-msg").hide(200);
       // sanitises input before submission
       const safeHTML = escape(rawHTML);
       $.ajax("/tweets/", {
         method: "POST",
         data: {text: safeHTML}
       })
-      .then( () => {
-        // empties the tweet container before refreshing 
-        $(".show-tweets").empty();
-        loadTweets(renderTweets);
-        $("#tweet-text").val("");
-        $(".counter").val(140);
-      });
-    };
+        .then(() => {
+        // empties the tweet container before refreshing
+          $(".show-tweets").empty();
+          loadTweets(renderTweets);
+          $("#tweet-text").val("");
+          $(".counter").val(140);
+        });
+    }
   });
 
   // fills the tweet bucket up
@@ -126,10 +126,10 @@ $(document).ready(function(){
     $.ajax("/tweets/", {
       method: "GET"
     })
-    .then(res => done(res));
-  }
+      .then(res => done(res));
+  };
   // on page load
-    loadTweets(renderTweets)
+  loadTweets(renderTweets);
 });
 
 

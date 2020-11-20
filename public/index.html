@@ -34,9 +34,6 @@
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
 
-    <!-- Counter JS -->
-    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
-
   </head>
 
   <body>
@@ -44,7 +41,7 @@
     <nav>
       <span>tweeeter</span>
       <div class="write-focus">
-        <p><strong>Write</strong> a new tweet</p>
+        <p><strong>Write</strong> a new tweeet</p>
         <img src="./images/download.png" class="chevron">
         </object>
       </div>
@@ -59,27 +56,33 @@
           <h2>Your Name</h2>
       </div>
     </header>
-    <img src="images/chevron-up.png" class="return invisible">
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
-
-        <p id="error-msg"><img src="./images/close.png" alt="error icon">  Your tweet must be <strong>at least 1</strong> character and <strong>at most 140</strong> characters!  <img src="./images/close.png" alt="error icon"></p>
+        <!-- error message -->
+        <p id="error-msg">
+          <img src="./images/close.png" alt="error icon">  
+          Your tweet must be <strong>at least 1</strong> character and <strong>at most 140</strong> characters!  
+          <img src="./images/close.png" alt="error icon">
+        </p>
+        <!-- tweeet submission form-->
         <form id="tweet-form" action="/tweets/" method="POST">
           <label for="tweet-text">What are you humming about?</label>
           <textarea name="text" id="tweet-text"></textarea>
           <div>
-            <button type="submit">Tweet</button>
+            <button type="submit">Tweeet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
       </section>
       <section class="show-tweets">
-        
+        <!--- TWEEETS APPEAR HERE. QUITE EXCITING, THIS COMPUTER MAGIC --->
       </section>
-      <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a>, <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>, <a href="https://www.alfredocreates.com/" title="Alfredo Hernandez">Alfredo Hernandez</a> & <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      <!-- accreditation-->
+      <div>Tweeeter was built by <a href="https://github.com/danuhnder" title="Dan Robertson">Dan Robertson</a> during Week 4 of his Web Development Bootcamp at <a href="https://www.lighthouselabs.ca/" title="Lighhouse Labs">Lighthouse Labs</a>. Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a>, <a href="https://www.flaticon.com/authors/dave-gandy" title="Dave Gandy">Dave Gandy</a>, <a href="https://www.alfredocreates.com/" title="Alfredo Hernandez">Alfredo Hernandez</a> & <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </main>
+    <!-- invisible nav aid revealed by scrolling down-->
+    <img src="images/chevron-up.png" class="home invisible">
     
-   
   </body>
 </html>
