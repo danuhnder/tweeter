@@ -4,6 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+
 $(document).ready(function() {
  
   // Handles dropdown of New Tweet form
@@ -30,9 +31,8 @@ $(document).ready(function() {
     $("nav").slideDown(0);
     window.scrollTo(0, 0);
   });
-
-  // generates readable date from timestamp
-  const dateFunction = (date) => {
+  
+  const dateAsFullString = (date) => {
     const newDate = new Date(date);
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const weekday = days[newDate.getDay()];
@@ -46,6 +46,61 @@ $(document).ready(function() {
     return readableDate;
   };
 
+  const dateAsShortString = (date) => {
+    const newDate = new Date(date);
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const weekday = days[newDate.getDay()];
+    const day = newDate.getDate();
+    const hour = newDate.getHours();
+    const minute = (newDate.getMinutes() < 10 ? '0' : '') + newDate.getMinutes();
+    if (day === Date.now().getDate()) {
+      return `Today, ${hour}:${minute}`;
+    }
+    return `${weekday}, ${hour}:${minute}`
+  };
+
+  const determineDateDisplay = (date) => {
+    const howRecent = Date.now() - new Date(date);
+    if (howRecent < 1000 * 60) {
+      return "Less than a minute ago"
+    } 
+    // within last hour displays minutes ago
+    if (howRecent < 1000 * 60 * 60) {
+      const minutesAgo = Math.floor(howRecent / (1000 * 60))
+      return `${minutesAgo} minutes ago`
+    }
+    // within last six hour displays hours and minutes ago
+    if (howRecent < 1000 * 60 * 60 * 6) {
+      const hoursAgo = Math.floor(howRecent / (1000 * 60 * 60))
+      const hours = (hoursAgo > 1? "s" : "");
+      const minutesAgo = Math.floor((howRecent % (1000 * 60 * 60)) / (1000 * 60))
+      return `${hoursAgo} hour${hours} ${minutesAgo} minutes ago`
+    }
+    // within last six days displays today or weekday as appropriate and the time posted
+    if (howRecent < 1000 * 60 * 60 * 24 * 6) {
+      return dateAsShortString(date);
+    }
+    // returns a full date string for tweets more than 6 days old
+      return dateAsFullString(date);
+   }
+   
+   
+  // generates readable date from timestamp
+  // const dateFunction = (date) => {
+  //   const newDate = new Date(date);
+  //   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  //   const weekday = days[newDate.getDay()];
+  //   const day = newDate.getDate();
+  //   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  //   const month = months[newDate.getMonth()];
+  //   const year = newDate.getFullYear();
+  //   const hour = newDate.getHours();
+  //   const minute = (newDate.getMinutes() < 10 ? '0' : '') + newDate.getMinutes();
+  //   const readableDate = `${hour}:${minute} | ${weekday} ${day}-${month}-${year}`;
+  //   return readableDate;
+  // };
+ 
+  
   // Creates HTML encoded tweet from object
   const createTweetElement = function(tweet) {
     const $tweet = $(`
@@ -59,10 +114,10 @@ $(document).ready(function() {
     </header>
     <p>${tweet.content.text}</p>
     <footer>
-      <span>${dateFunction(tweet.created_at)}</span>
+      <span>${determineDateDisplay(tweet.created_at)}</span>
       <span><img src="images/reply-message.png"> | <img src="images/share.png"> | <img src="images/heart.png"></span>
     </footer>
-  </article> 
+    </article> 
     `);
     return $tweet;
   };
