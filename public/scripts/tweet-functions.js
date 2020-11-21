@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(() => {
  
   // Creates HTML encoded tweet from object (date function defined in date-functions.js)
-  const createTweetElement = function(tweet) {
+  const createTweetElement = (tweet) => {
     const $tweet = $(`
     <article class="tweet">
     <header class="tweet-header">
@@ -22,58 +22,12 @@ $(document).ready(function() {
   };
   
   // takes array of tweet objects, prepends HTML version to tweet container
-  const renderTweets = function(array) {
+  const renderTweets = (array) => {
     for (let tweet of array) {
       const $tweet = createTweetElement(tweet);
       $(".show-tweets").prepend($tweet);
     }
   };
-
-  // tweet composer character counter logic
-  $("#tweet-text").on('input', function() {
-    const tweetLength = $(this).val().length;
-    const counter = $(".counter");
-    counter.val(140 - tweetLength);
-    if (counter.val() < 0) {
-      counter.addClass('red');
-    } else {
-      counter.removeClass('red');
-    }
-  });
-  
-
-  // protects from cross-site-scripting and enemy hackermans
-  const escape =  function(str) {
-    let div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  };
-
-  // submission and error-handling logic
-  $("#tweet-form").on("submit", function(event) {
-    event.preventDefault();
-    const rawHTML = $("#tweet-text").val();
-    // string length checker
-    if (rawHTML === null || rawHTML === '' || rawHTML.length > 140) {
-      $("#error-msg").show(200);
-      setTimeout(() => $("#error-msg").hide(200), 3600);
-    } else {
-      $("#error-msg").hide(200);
-      // sanitises input before submission
-      const safeHTML = escape(rawHTML);
-      $.ajax("/tweets/", {
-        method: "POST",
-        data: {text: safeHTML}
-      })
-        .then(() => {
-        // empties the tweet container before refreshing
-          $(".show-tweets").empty();
-          loadTweets(renderTweets);
-          $("#tweet-text").val("");
-          $(".counter").val(140);
-        });
-    }
-  });
 
   // fills the tweet bucket up
   const loadTweets = (done) => {
@@ -82,8 +36,45 @@ $(document).ready(function() {
     })
       .then(res => done(res));
   };
-  // on page load
+  
+  // Runs on page load.
   loadTweets(renderTweets);
+ 
+  
+  // validates input text length and protects from cross-site-scripting and enemy hackermans
+  const validator = (str) => {
+    if (str === null || str === '' || str.length > 140) {
+      return null;
+    }
+    let div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
+  
+  // tweet submission and error-handling logic
+  $("#tweet-form").on("submit", function(event) {
+    event.preventDefault();
+    const validatedText = validator($("#tweet-text").val());
+    if (!validatedText) {
+      $("#error-msg").show(200);
+      setTimeout(() => $("#error-msg").hide(200), 3600);
+    } else {
+      $("#error-msg").hide(200);
+        $.ajax("/tweets/", {
+        method: "POST",
+        data: {text: validatedText}
+      })
+        .then(() => {
+        // clears the tweet container, renders tweets, resets textarea and counter
+          $(".show-tweets").empty();
+          loadTweets(renderTweets);
+          $("#tweet-text").val("");
+          $(".counter").val(140);
+        });
+    }
+  });
+
 });
 
 

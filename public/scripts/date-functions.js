@@ -1,5 +1,5 @@
 
-// Implemented if tweet is between six hours and six days old at time of render
+// Implemented if tweet is more than six days old at time of render
 const dateAsFullString = (date) => {
   const newDate = new Date(date);
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -13,16 +13,20 @@ const dateAsFullString = (date) => {
   return `${hour}:${minute} | ${weekday} ${day}-${month}-${year}`;
 };
 
-// Implemented if tweet is more than six days old at time of render
+// Implemented if tweet is between six hours and six days old at time of render
 const dateAsShortString = (date) => {
   const newDate = new Date(date);
-  const day = newDate.getDate();
-  const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const weekday = weekDays[day];
+  const now = new Date(Date.now());
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const weekday = days[newDate.getDay()];
   const hour = newDate.getHours();
   const minute = (newDate.getMinutes() < 10 ? '0' : '') + newDate.getMinutes();
-  if (day === Date.now().getDate()) {
+  
+  if (newDate.getDay() === now.getDay()) {
     return `Today, ${hour}:${minute}`;
+  } 
+  if (newDate.getDay() + 1 === now.getDay() || (newDate.getDay() === 6 && now.getDay() === 0)) {
+    return `Yesterday, ${hour}:${minute}`;
   }
   return `${weekday}, ${hour}:${minute}`
 };
