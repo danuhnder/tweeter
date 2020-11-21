@@ -48,7 +48,7 @@ const determineDateDisplay = (date) => {
     const minutesAgo = Math.floor((howRecent % (1000 * 60 * 60)) / (1000 * 60))
     return `${hoursAgo} hour${hoursAgo > 1? "s" : ""} ${minutesAgo} minute${minutesAgo > 1? "s" : ""} ago`
   }
-  // within last six days displays today or weekday as appropriate and the time posted
+  // within last six days displays today, yesterday or weekday as appropriate and the time posted
   if (howRecent < 1000 * 60 * 60 * 24 * 6) {
     return dateAsShortString(date);
   }
