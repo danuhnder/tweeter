@@ -13,6 +13,7 @@ Tweeeter is a simple, single-page Twitter clone. Front end is constructed from H
 - fun animations!
 - cool sliding and disappearing divs!
 - THREE different viewing modes based on screen real estate
+- NEW FEATURE - a whole host of date display modes, all written TEDIOUSLY in Vanilla JS
 
 ## Dependencies
 
@@ -22,7 +23,7 @@ Tweeeter is a simple, single-page Twitter clone. Front end is constructed from H
 - Body Parser
 
 ## Screenshots
-
+!["NEW - cool timestamps"](https://github.com/danuhnder/tweeter/blob/master/docs/tweet-timestamps.png)
 !["Top of the page (in tablet view)"](https://github.com/danuhnder/tweeter/blob/master/docs/tweet-landing.png)
 !["Engage in some scintillating conversation..."](https://github.com/danuhnder/tweeter/blob/master/docs/tweet-list.png)
 !["... and add your own two cents!"](https://github.com/danuhnder/tweeter/blob/master/docs/tweet-input.png)
